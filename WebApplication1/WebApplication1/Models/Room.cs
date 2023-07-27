@@ -5,7 +5,7 @@ namespace WebApplication1.Models
     public class Room
     {
         [Key]
-        public int RoomId { get; set; }
+        public int ID { get; set; }
         [Required]
         public string Nickname { get; set; }
         [Required]
@@ -15,6 +15,6 @@ namespace WebApplication1.Models
         [Required]
         public string PetFriendly { get; set; }
         [Required]
-        public string LocationId { get; set; }
+        public int LocationID { get; set; }
     }
 }

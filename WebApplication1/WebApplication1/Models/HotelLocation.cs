@@ -5,7 +5,7 @@ namespace WebApplication1.Models
     public class HotelLocation
     {
         [Key]
-        public int LocationId { get; set; }
+        public int ID { get; set; }
         [Required]
         public string Name { get; set; }
         [Required]

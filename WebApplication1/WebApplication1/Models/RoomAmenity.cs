@@ -5,9 +5,9 @@ namespace WebApplication1.Models
     public class RoomAmenity
     {
         [Key]
-        public int RoomId { get; set; }
+        public int RoomID { get; set; }
         [Required]
-        public string AmenityId { get; set; }
+        public int AmenityID { get; set; }
         [Required]
         public string Description { get; set; }
     }

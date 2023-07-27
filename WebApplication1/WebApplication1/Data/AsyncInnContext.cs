@@ -16,12 +16,30 @@ namespace WebApplication1.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Amenity>().HasData(new Amenity { AmenityId = 1, Name = "A/C" });
-            modelBuilder.Entity<HotelLocation>().HasData(new HotelLocation { LocationId = 1, Name = "lee", Address = "1236 rode", City = "midtown", State = "TN", PhoneNumber = "555-555-5555" });
-            modelBuilder.Entity<Room>().HasData(new Room { RoomId = 1, LayoutType = "big"});
+            modelBuilder.Entity<Amenity>().HasData(new Amenity 
+            { ID = 1, Name = "A/C" },
+            new Amenity
+            { ID = 2, Name = "A/C" },
+            new Amenity
+            { ID = 3, Name = "A/C" });
+
+            modelBuilder.Entity<HotelLocation>().HasData(new HotelLocation 
+            { ID = 1, Name = "laaBy", Address = "1236 rode", City = "midtown", State = "TN", PhoneNumber = "555-555-5555" },
+            new HotelLocation
+            { ID = 2, Name = "Nigth 9", Address = "7891 rode", City = "hightown", State = "TN", PhoneNumber = "666-666-6666" },
+            new HotelLocation
+            { ID = 3, Name = "Layback Bay", Address = "1112 rode", City = "lowtown", State = "TN", PhoneNumber = "777-777-7777" });
+            
+            modelBuilder.Entity<Room>().HasData(new Room 
+            { ID = 1, Nickname = "pro", LayoutType = "large", Price = 150.00, PetFriendly = "yes", LocationID = 1},
+            new Room
+            { ID = 2, Nickname = "Basic Double", LayoutType = "mid", Price = 100.00, PetFriendly = "yes", LocationID = 2 },
+            new Room
+            { ID = 3, Nickname = "Basic Single", LayoutType = "small", Price = 50.00, PetFriendly = "no", LocationID = 3 });
 
             //lookup tables
-            modelBuilder.Entity<RoomAmenity>().HasData(new RoomAmenity { AmenityId = 1, RoomId = 1, Description = "cool" });
+            modelBuilder.Entity<RoomAmenity>().HasData(new RoomAmenity 
+            { AmenityID = 1, RoomID = 1, Description = "cool" });
         }
     }
 }
