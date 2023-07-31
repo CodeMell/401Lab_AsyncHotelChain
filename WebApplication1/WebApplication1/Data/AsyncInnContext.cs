@@ -19,9 +19,9 @@ namespace WebApplication1.Data
             modelBuilder.Entity<Amenity>().HasData(new Amenity 
             { ID = 1, Name = "A/C" },
             new Amenity
-            { ID = 2, Name = "A/C" },
+            { ID = 2, Name = "Heater" },
             new Amenity
-            { ID = 3, Name = "A/C" });
+            { ID = 3, Name = "Soap" });
 
             modelBuilder.Entity<HotelLocation>().HasData(new HotelLocation 
             { ID = 1, Name = "laaBy", Address = "1236 rode", City = "midtown", State = "TN", PhoneNumber = "555-555-5555" },
@@ -43,5 +43,9 @@ namespace WebApplication1.Data
         }
 
         public DbSet<WebApplication1.Models.HotelLocation> HotelLocation { get; set; } = default!;
+
+        public DbSet<WebApplication1.Models.Amenity> Amenity { get; set; } = default!;
+
+        public DbSet<WebApplication1.Models.Room> Room { get; set; } = default!;
     }
 }
