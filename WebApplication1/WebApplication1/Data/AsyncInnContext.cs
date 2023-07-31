@@ -41,5 +41,7 @@ namespace WebApplication1.Data
             modelBuilder.Entity<RoomAmenity>().HasData(new RoomAmenity 
             { AmenityID = 1, RoomID = 1, Description = "cool" });
         }
+
+        public DbSet<WebApplication1.Models.HotelLocation> HotelLocation { get; set; } = default!;
     }
 }
