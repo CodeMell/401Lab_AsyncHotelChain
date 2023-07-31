@@ -31,9 +31,9 @@ namespace WebApplication1
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
-            app.MapControllerRoute(
-                name: "api",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+            //app.MapControllerRoute(
+            //    name: "api",
+            //    pattern: "api/{controller=Home}/{action=Index}/{id?}");
 
             //https://localhost:7014/Hotel/CheckIn/1
 

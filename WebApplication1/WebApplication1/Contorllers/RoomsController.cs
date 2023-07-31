@@ -10,6 +10,7 @@ using WebApplication1.Models;
 
 namespace WebApplication1.Contorllers
 {
+    //https://localhost:44368/api/Rooms/
     [Route("api/[controller]")]
     [ApiController]
     public class RoomsController : ControllerBase

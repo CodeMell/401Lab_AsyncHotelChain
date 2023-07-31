@@ -10,7 +10,7 @@ using WebApplication1.Models;
 
 namespace WebApplication1.Contorllers
 {
-    //https://localhost:1234/api/HotelLocations/
+    //https://localhost:44368/api/HotelLocations/
     //https://asyncinn.com/api/HotelLocations
     [Route("api/[controller]")]
     [ApiController]
