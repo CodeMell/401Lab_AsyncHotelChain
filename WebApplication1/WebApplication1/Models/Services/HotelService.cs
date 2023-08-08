@@ -13,6 +13,16 @@ namespace WebApplication1.Models.Services
         {
             _context = context;
         }
+        public async Task<IActionResult> IHotel.DeleteHotelLocation(int id)
+        {
+            // former hotel controller functionality
+            var hotel = await _context.HotelLocation.FindAsync(id);
+            _context.HotelLocation.Remove(hotel);
+            await _context.SaveChangesAsync();
+            // end
+            return null;
+            //return null to controller. controller returns No Content to user
+        }
 
         // get all hotels
         public async Task<ActionResult<IEnumerable<HotelLocation>>> IHotel.GetHotelLocation()
@@ -43,16 +53,6 @@ namespace WebApplication1.Models.Services
             _context.HotelLocation.Add(hotelLocation);
             await _context.SaveChangesAsync();
             return hotelLocation;
-        }
-        public async Task<IActionResult> IHotel.DeleteHotelLocation(int id)
-        {
-            // former hotel controller functionality
-            var hotel = await _context.HotelLocation.FindAsync(id);
-            _context.HotelLocation.Remove(hotel);
-            await _context.SaveChangesAsync();
-            // end
-            return null;
-            //return null to controller. controller returns No Content to user
         }
         public bool IHotel.HotelLocationExists(int id)
         {
