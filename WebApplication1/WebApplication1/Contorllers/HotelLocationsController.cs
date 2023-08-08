@@ -23,7 +23,7 @@ namespace WebApplication1.Contorllers
             _context = context;
         }
 
-        // GET: api/HotelLocations
+        // GET: api/HotelLocations 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<HotelLocation>>> GetHotelLocation()
         {
