@@ -15,6 +15,9 @@ namespace WebApplication1.Models
         [Required]
         public string PetFriendly { get; set; }
         [Required]
-        public int LocationID { get; set; }
+        public int HotelLocationID { get; set; }
+
+        public List<RoomAmenity> RoomAmenities { get; set; }
+        public HotelLocation HotelLocation { get; set; }
     }
 }

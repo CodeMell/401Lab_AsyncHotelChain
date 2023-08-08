@@ -16,5 +16,7 @@ namespace WebApplication1.Models
         public string Address { get; set; }
         [Required]
         public string PhoneNumber { get; set; }
+
+        public List<Room> Rooms { get; set; }
     }
 }
