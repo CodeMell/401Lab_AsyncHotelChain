@@ -33,6 +33,7 @@ namespace WebApplication1.Contorllers
             return await _context.Room
                 .Include(r => r.RoomAmenities)
                 .ThenInclude(ra => ra.Amenity)
+                .Include(h => h.HotelLocation)
                 .ToListAsync();
         }
 

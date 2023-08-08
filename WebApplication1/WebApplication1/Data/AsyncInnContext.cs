@@ -16,6 +16,7 @@ namespace WebApplication1.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            /*
             modelBuilder.Entity<Amenity>().HasData(new Amenity 
             { ID = 1, Name = "A/C" },
             new Amenity
@@ -31,15 +32,20 @@ namespace WebApplication1.Data
             { ID = 3, Name = "Layback Bay", Address = "1112 rode", City = "lowtown", State = "TN", PhoneNumber = "777-777-7777" });
             
             modelBuilder.Entity<Room>().HasData(new Room 
-            { ID = 1, Nickname = "pro", LayoutType = "large", Price = 150.00, PetFriendly = "yes", LocationID = 1},
+            { ID = 1, Nickname = "pro", LayoutType = "large", Price = 150.00, PetFriendly = "yes", HotelLocationID = 1},
             new Room
-            { ID = 2, Nickname = "Basic Double", LayoutType = "mid", Price = 100.00, PetFriendly = "yes", LocationID = 2 },
+            { ID = 2, Nickname = "Basic Double", LayoutType = "mid", Price = 100.00, PetFriendly = "yes", HotelLocationID = 2 },
             new Room
-            { ID = 3, Nickname = "Basic Single", LayoutType = "small", Price = 50.00, PetFriendly = "no", LocationID = 3 });
+            { ID = 3, Nickname = "Basic Single", LayoutType = "small", Price = 50.00, PetFriendly = "no", HotelLocationID = 3 });
 
             //lookup tables
             modelBuilder.Entity<RoomAmenity>().HasData(new RoomAmenity 
-            { AmenityID = 1, RoomID = 1, Description = "cool" });
+            { ID = 1, AmenityID = 1, RoomID = 1, Description = "cool" },
+            new RoomAmenity 
+            { ID = 2, AmenityID = 1, RoomID = 1, Description = "cool" },
+            new RoomAmenity
+            { ID = 3, AmenityID = 1, RoomID = 1, Description = "cool" });
+            */
         }
 
         public DbSet<WebApplication1.Models.HotelLocation> HotelLocation { get; set; } = default!;
