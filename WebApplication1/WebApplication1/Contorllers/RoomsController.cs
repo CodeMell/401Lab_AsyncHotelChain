@@ -23,7 +23,7 @@ namespace WebApplication1.Contorllers
         }
 
         // GET: api/Rooms
-        [HttpGet] 
+        [HttpGet]
         public async Task<ActionResult<IEnumerable<Room>>> GetRoom()
         {
           if (_context.Room == null)
