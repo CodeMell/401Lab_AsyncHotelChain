@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using WebApplication1.Data;
 using WebApplication1.Models;
 using WebApplication1.Models.Interfaces;
+using WebApplication1.Models.Services;
 
 namespace WebApplication1.Contorllers
 {

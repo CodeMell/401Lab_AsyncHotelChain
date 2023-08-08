@@ -56,7 +56,7 @@ namespace WebApplication1.Models.Services
         }
         public bool IHotel.HotelLocationExists(int id)
         {
-            return (_context.HotelLocation?.Any(e => e.ID == id)).GetValueOrDefault;
+            return (_context.HotelLocation?.Any(e => e.ID == id)).GetValueOrDefault();
         }
     }
 }

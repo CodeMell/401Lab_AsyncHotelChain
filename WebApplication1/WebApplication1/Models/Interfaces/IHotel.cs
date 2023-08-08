@@ -4,11 +4,11 @@ namespace WebApplication1.Models.Interfaces
 {
     public interface IHotel
     {
-        Task<ActionResult<IEnumerable<HotelLocation>>> GetHotelLocation();
-        Task<ActionResult<HotelLocation>> GetHotelLocation(int id);
-        Task<IActionResult> PutHotelLocation(int id, HotelLocation hotelLocation);
-        Task<ActionResult<HotelLocation>> PostHotelLocation(HotelLocation hotelLocation);
-        Task<IActionResult> DeleteHotelLocation(int id);
-        bool HotelLocationExists(int id);
+        public Task<ActionResult<IEnumerable<HotelLocation>>> GetHotelLocation();
+        public Task<ActionResult<HotelLocation>> GetHotelLocation(int id);
+        public Task<IActionResult> PutHotelLocation(int id, HotelLocation hotelLocation);
+        public Task<ActionResult<HotelLocation>> PostHotelLocation(HotelLocation hotelLocation);
+        public Task<IActionResult> DeleteHotelLocation(int id);
+        public bool HotelLocationExists(int id);
     }
 }
