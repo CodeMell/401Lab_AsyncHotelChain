@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebApplication1.Data;
 using WebApplication1.Models;
+using WebApplication1.Models.Interfaces;
 
 namespace WebApplication1.Contorllers
 {
@@ -17,39 +18,26 @@ namespace WebApplication1.Contorllers
     public class HotelLocationsController : ControllerBase
     {
         private readonly AsyncInnContext _context;
+        private readonly IHotel _hotel;
 
-        public HotelLocationsController(AsyncInnContext context)
+        public HotelLocationsController(AsyncInnContext context, IHotel hotel)
         {
             _context = context;
+            _hotel = hotel;
         }
 
         // GET: api/HotelLocations
         [HttpGet]
         public async Task<ActionResult<IEnumerable<HotelLocation>>> GetHotelLocation()
         {
-          if (_context.HotelLocation == null)
-          {
-              return NotFound();
-          }
-            return await _context.HotelLocation.Where(h => h.City == "midtown").ToListAsync();//ToListAsync();
+            return await _hotel.GetHotelLocation();//ToListAsync();
         }
 
         // GET: api/HotelLocations/5
         [HttpGet("{id}")]
         public async Task<ActionResult<HotelLocation>> GetHotelLocation(int id)
         {
-          if (_context.HotelLocation == null)
-          {
-              return NotFound();
-          }
-            var hotelLocation = await _context.HotelLocation.FindAsync(id);
-
-            if (hotelLocation == null)
-            {
-                return NotFound();
-            }
-
-            return hotelLocation;
+            return await _hotel.GetHotelLocation(id);
         }
 
         // PUT: api/HotelLocations/5
@@ -62,23 +50,7 @@ namespace WebApplication1.Contorllers
                 return BadRequest();
             }
 
-            _context.Entry(hotelLocation).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!HotelLocationExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+           await _hotel.PutHotelLocation(id, hotelLocation);
 
             return NoContent();
         }
@@ -88,12 +60,7 @@ namespace WebApplication1.Contorllers
         [HttpPost]
         public async Task<ActionResult<HotelLocation>> PostHotelLocation(HotelLocation hotelLocation)
         {
-          if (_context.HotelLocation == null)
-          {
-              return Problem("Entity set 'AsyncInnContext.HotelLocation'  is null.");
-          }
-            _context.HotelLocation.Add(hotelLocation);
-            await _context.SaveChangesAsync();
+            await _hotel.PostHotelLocation(hotelLocation);
 
             return CreatedAtAction("GetHotelLocation", new { id = hotelLocation.ID }, hotelLocation);
         }
@@ -102,25 +69,14 @@ namespace WebApplication1.Contorllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteHotelLocation(int id)
         {
-            if (_context.HotelLocation == null)
-            {
-                return NotFound();
-            }
-            var hotelLocation = await _context.HotelLocation.FindAsync(id);
-            if (hotelLocation == null)
-            {
-                return NotFound();
-            }
-
-            _context.HotelLocation.Remove(hotelLocation);
-            await _context.SaveChangesAsync();
+            await _hotel.DeleteHotelLocation(id);
 
             return NoContent();
         }
 
         private bool HotelLocationExists(int id)
         {
-            return (_context.HotelLocation?.Any(e => e.ID == id)).GetValueOrDefault();
+            return _hotel.HotelLocationExists(id);
         }
     }
 }
