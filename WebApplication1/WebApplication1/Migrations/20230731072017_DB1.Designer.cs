@@ -132,7 +132,7 @@ namespace WebApplication1.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("HotelLocationID")
+                    b.Property<int>("LocationID")
                         .HasColumnType("int");
 
                     b.Property<string>("Nickname")
@@ -155,7 +155,7 @@ namespace WebApplication1.Migrations
                         {
                             ID = 1,
                             LayoutType = "large",
-                            HotelLocationID = 1,
+                            LocationID = 1,
                             Nickname = "pro",
                             PetFriendly = "yes",
                             Price = 150.0
@@ -164,7 +164,7 @@ namespace WebApplication1.Migrations
                         {
                             ID = 2,
                             LayoutType = "mid",
-                            HotelLocationID = 2,
+                            LocationID = 2,
                             Nickname = "Basic Double",
                             PetFriendly = "yes",
                             Price = 100.0
@@ -173,7 +173,7 @@ namespace WebApplication1.Migrations
                         {
                             ID = 3,
                             LayoutType = "small",
-                            HotelLocationID = 3,
+                            LocationID = 3,
                             Nickname = "Basic Single",
                             PetFriendly = "no",
                             Price = 50.0

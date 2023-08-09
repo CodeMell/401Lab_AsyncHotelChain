@@ -52,7 +52,7 @@ namespace WebApplication1.Migrations
                     LayoutType = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Price = table.Column<double>(type: "float", nullable: false),
                     PetFriendly = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    HotelLocationID = table.Column<int>(type: "int", nullable: false)
+                    LocationID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -95,7 +95,7 @@ namespace WebApplication1.Migrations
 
             migrationBuilder.InsertData(
                 table: "Room",
-                columns: new[] { "ID", "LayoutType", "HotelLocationID", "Nickname", "PetFriendly", "Price" },
+                columns: new[] { "ID", "LayoutType", "LocationID", "Nickname", "PetFriendly", "Price" },
                 values: new object[,]
                 {
                     { 1, "large", 1, "pro", "yes", 150.0 },
