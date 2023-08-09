@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 using System.Text.Json;
 using WebApplication1.Data;
+using Microsoft.OpenApi.Models;
 
 namespace WebApplication1
 {
@@ -28,9 +29,31 @@ namespace WebApplication1
                 options.UseSqlServer(
                     builder.Configuration
                     .GetConnectionString("DefaultConnection")));
-
+            builder.Services.AddSwaggerGen(options =>
+            {
+                // Make sure get the "using Statement"
+                options.SwaggerDoc("v1", new OpenApiInfo()
+                {
+                    Title = "Async Inn",
+                    Version = "v1",
+                });
+            });
             var app = builder.Build();
 
+            //swagger 
+
+
+             app.UseSwagger(options =>
+            {
+                options.RouteTemplate = "/api/{documentName}/swagger.json";
+            });
+
+            app.UseSwaggerUI(options =>
+            {
+                options.SwaggerEndpoint("/api/v1/swagger.json",
+                    "Async Inn");
+                options.RoutePrefix = "docs";
+            });
 
             //app.MapGet("/", () => "Hello World!");
             
