@@ -7,7 +7,7 @@
 namespace WebApplication1.Migrations
 {
     /// <inheritdoc />
-    public partial class DB1 : Migration
+    public partial class REDO : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -57,20 +57,39 @@ namespace WebApplication1.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Room", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_Room_HotelLocation_LocationID",
+                        column: x => x.LocationID,
+                        principalTable: "HotelLocation",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
                 name: "RoomAmenity",
                 columns: table => new
                 {
-                    RoomID = table.Column<int>(type: "int", nullable: false)
+                    ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    RoomID = table.Column<int>(type: "int", nullable: false),
                     AmenityID = table.Column<int>(type: "int", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RoomAmenity", x => x.RoomID);
+                    table.PrimaryKey("PK_RoomAmenity", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_RoomAmenity_Amenity_AmenityID",
+                        column: x => x.AmenityID,
+                        principalTable: "Amenity",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_RoomAmenity_Room_RoomID",
+                        column: x => x.RoomID,
+                        principalTable: "Room",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
@@ -79,8 +98,8 @@ namespace WebApplication1.Migrations
                 values: new object[,]
                 {
                     { 1, "A/C" },
-                    { 2, "A/C" },
-                    { 3, "A/C" }
+                    { 2, "Heater" },
+                    { 3, "Soap" }
                 });
 
             migrationBuilder.InsertData(
@@ -105,24 +124,44 @@ namespace WebApplication1.Migrations
 
             migrationBuilder.InsertData(
                 table: "RoomAmenity",
-                columns: new[] { "RoomID", "AmenityID", "Description" },
-                values: new object[] { 1, 1, "cool" });
+                columns: new[] { "ID", "AmenityID", "Description", "RoomID" },
+                values: new object[,]
+                {
+                    { 1, 1, "cool", 1 },
+                    { 2, 1, "cool", 1 },
+                    { 3, 1, "cool", 1 }
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Room_LocationID",
+                table: "Room",
+                column: "LocationID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RoomAmenity_AmenityID",
+                table: "RoomAmenity",
+                column: "AmenityID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RoomAmenity_RoomID",
+                table: "RoomAmenity",
+                column: "RoomID");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Amenity");
+                name: "RoomAmenity");
 
             migrationBuilder.DropTable(
-                name: "HotelLocation");
+                name: "Amenity");
 
             migrationBuilder.DropTable(
                 name: "Room");
 
             migrationBuilder.DropTable(
-                name: "RoomAmenity");
+                name: "HotelLocation");
         }
     }
 }

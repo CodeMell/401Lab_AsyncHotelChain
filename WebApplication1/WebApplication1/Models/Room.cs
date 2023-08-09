@@ -18,6 +18,6 @@ namespace WebApplication1.Models
         public int LocationID { get; set; }
 
         public List<RoomAmenity> RoomAmenities { get; set; }
-        public HotelLocation HotelLocation { get; set; }
+        public HotelLocation Location { get; set; }
     }
 }

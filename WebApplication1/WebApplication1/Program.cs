@@ -1,4 +1,6 @@
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
+using System.Text.Json;
 using WebApplication1.Data;
 
 namespace WebApplication1
@@ -10,7 +12,16 @@ namespace WebApplication1
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container
-            builder.Services.AddControllersWithViews();
+            builder.Services.AddControllersWithViews()
+                .AddJsonOptions(options => {
+                    //Ignore Data Cycling Errors
+                    options.JsonSerializerOptions.ReferenceHandler
+                        = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
+                    //CamelCase JSON Attributes
+                    options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+                    //Leave out null data fields in objects
+                    options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
+                });
 
             //builder.Services.addContext
             builder.Services.AddDbContext<AsyncInnContext>(options =>

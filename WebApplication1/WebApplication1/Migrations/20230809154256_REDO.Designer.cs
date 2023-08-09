@@ -11,8 +11,8 @@ using WebApplication1.Data;
 namespace WebApplication1.Migrations
 {
     [DbContext(typeof(AsyncInnContext))]
-    [Migration("20230731072017_DB1")]
-    partial class DB1
+    [Migration("20230809154256_REDO")]
+    partial class REDO
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -49,12 +49,12 @@ namespace WebApplication1.Migrations
                         new
                         {
                             ID = 2,
-                            Name = "A/C"
+                            Name = "Heater"
                         },
                         new
                         {
                             ID = 3,
-                            Name = "A/C"
+                            Name = "Soap"
                         });
                 });
 
@@ -148,6 +148,8 @@ namespace WebApplication1.Migrations
 
                     b.HasKey("ID");
 
+                    b.HasIndex("LocationID");
+
                     b.ToTable("Room");
 
                     b.HasData(
@@ -182,11 +184,11 @@ namespace WebApplication1.Migrations
 
             modelBuilder.Entity("WebApplication1.Models.RoomAmenity", b =>
                 {
-                    b.Property<int>("RoomID")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RoomID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
                     b.Property<int>("AmenityID")
                         .HasColumnType("int");
@@ -195,17 +197,79 @@ namespace WebApplication1.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("RoomID");
+                    b.Property<int>("RoomID")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("AmenityID");
+
+                    b.HasIndex("RoomID");
 
                     b.ToTable("RoomAmenity");
 
                     b.HasData(
                         new
                         {
-                            RoomID = 1,
+                            ID = 1,
                             AmenityID = 1,
-                            Description = "cool"
+                            Description = "cool",
+                            RoomID = 1
+                        },
+                        new
+                        {
+                            ID = 2,
+                            AmenityID = 1,
+                            Description = "cool",
+                            RoomID = 1
+                        },
+                        new
+                        {
+                            ID = 3,
+                            AmenityID = 1,
+                            Description = "cool",
+                            RoomID = 1
                         });
+                });
+
+            modelBuilder.Entity("WebApplication1.Models.Room", b =>
+                {
+                    b.HasOne("WebApplication1.Models.HotelLocation", "Location")
+                        .WithMany("Rooms")
+                        .HasForeignKey("LocationID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Location");
+                });
+
+            modelBuilder.Entity("WebApplication1.Models.RoomAmenity", b =>
+                {
+                    b.HasOne("WebApplication1.Models.Amenity", "Amenity")
+                        .WithMany()
+                        .HasForeignKey("AmenityID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WebApplication1.Models.Room", "Room")
+                        .WithMany("RoomAmenities")
+                        .HasForeignKey("RoomID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Amenity");
+
+                    b.Navigation("Room");
+                });
+
+            modelBuilder.Entity("WebApplication1.Models.HotelLocation", b =>
+                {
+                    b.Navigation("Rooms");
+                });
+
+            modelBuilder.Entity("WebApplication1.Models.Room", b =>
+                {
+                    b.Navigation("RoomAmenities");
                 });
 #pragma warning restore 612, 618
         }
