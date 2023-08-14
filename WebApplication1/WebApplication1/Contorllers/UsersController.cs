@@ -73,7 +73,7 @@ namespace WebApplication1.Controllers
     public async Task<ActionResult<ApplicationUser>> Login(ApplicationUser data)
     {
       
-      var user = await userManager.FindByNameAsync(data.Username);
+      var user = await userManager.FindByNameAsync(data.UserName);
 
       if (await userManager.CheckPasswordAsync(user, data.Password))
       {
@@ -81,7 +81,7 @@ namespace WebApplication1.Controllers
         return new ApplicationUser()
         {
           Id = user.Id,
-          Username = user.UserName,
+          UserName = user.UserName,
         };
       }
       if (user == null)
