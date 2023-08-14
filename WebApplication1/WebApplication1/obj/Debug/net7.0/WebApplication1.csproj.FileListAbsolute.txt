@@ -251,3 +251,9 @@ C:\Users\treme\Documents\GitHub\401Lab_AsyncHotelChain\WebApplication1\WebApplic
 C:\Users\treme\Documents\GitHub\401Lab_AsyncHotelChain\WebApplication1\WebApplication1\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\treme\Documents\GitHub\401Lab_AsyncHotelChain\WebApplication1\WebApplication1\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Users\treme\Documents\GitHub\401Lab_AsyncHotelChain\WebApplication1\WebApplication1\obj\Debug\net7.0\WebApplication1.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\treme\Documents\GitHub\401Lab_AsyncHotelChain\WebApplication1\WebApplication1\bin\Debug\net7.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\treme\Documents\GitHub\401Lab_AsyncHotelChain\WebApplication1\WebApplication1\bin\Debug\net7.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\treme\Documents\GitHub\401Lab_AsyncHotelChain\WebApplication1\WebApplication1\bin\Debug\net7.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\treme\Documents\GitHub\401Lab_AsyncHotelChain\WebApplication1\WebApplication1\bin\Debug\net7.0\Microsoft.Extensions.Identity.Core.dll
+C:\Users\treme\Documents\GitHub\401Lab_AsyncHotelChain\WebApplication1\WebApplication1\bin\Debug\net7.0\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\treme\Documents\GitHub\401Lab_AsyncHotelChain\WebApplication1\WebApplication1\bin\Debug\net7.0\Microsoft.Extensions.Options.dll

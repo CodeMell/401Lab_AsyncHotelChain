@@ -16,7 +16,9 @@ namespace WebApplication1.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            
+            // We need Identity to do it's thing ...
+            base.OnModelCreating(modelBuilder);
+            //information tables
             modelBuilder.Entity<Amenity>().HasData(new Amenity 
             { ID = 1, Name = "A/C" },
             new Amenity

@@ -3,6 +3,7 @@ using System.Text.Json.Serialization;
 using System.Text.Json;
 using WebApplication1.Data;
 using Microsoft.OpenApi.Models;
+using WebApplication1.Models;
 
 namespace WebApplication1
 {
@@ -38,6 +39,8 @@ namespace WebApplication1
                     Version = "v1",
                 });
             });
+            builder.Services.AddIdentityCore<ApplicationUser>()
+                .AddEntityFrameworkStores<AsyncInnContext>();
             var app = builder.Build();
 
             //swagger 
