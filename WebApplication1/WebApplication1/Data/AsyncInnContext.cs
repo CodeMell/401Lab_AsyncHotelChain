@@ -1,13 +1,17 @@
 ﻿using WebApplication1.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+
 namespace WebApplication1.Data
 {
-    public class AsyncInnContext : DbContext
+    public class AsyncInnContext : IdentityDbContext
     {
-        public DbSet<Amenity> Amenities;
-        public DbSet<HotelLocation> hotelLocations;
-        public DbSet<Room> rooms;
-        public DbSet<RoomAmenity> roomAmenities;
+        public DbSet<Amenity> Amenities { get; set; } = default!;
+        public DbSet<HotelLocation> hotelLocations { get; set; } = default!;
+        public DbSet<Room> rooms { get; set; } = default!;
+        public DbSet<RoomAmenity> roomAmenities { get; set; } = default!;
+        public DbSet<ApplicationUser> applicationUsers { get; set; } = default!;
 
         public AsyncInnContext(DbContextOptions<AsyncInnContext> options) : base(options) 
         {
@@ -47,7 +51,36 @@ namespace WebApplication1.Data
             { ID = 2, AmenityID = 1, RoomID = 1, Description = "cool" },
             new RoomAmenity
             { ID = 3, AmenityID = 1, RoomID = 1, Description = "cool" });
-            
+
+            SeedRole(modelBuilder, "Admin", "create", "update", "delete");
+            SeedRole(modelBuilder, "Editor", "create", "update");
+        }
+
+        private int nextId = 1;
+
+        private void SeedRole(ModelBuilder modelBuilder, string roleName, params string[] permissions)
+        {
+            var role = new IdentityRole
+            {
+                Id = roleName.ToLower(),
+                Name = roleName,
+                NormalizedName = roleName.ToUpper(),
+                ConcurrencyStamp = Guid.Empty.ToString()
+            };
+
+            modelBuilder.Entity<IdentityRole>().HasData(role);
+
+            // Go through the permissions list (the params) and seed a new entry for each
+            var roleClaims = permissions.Select(permission =>
+              new IdentityRoleClaim<string>
+              {
+                  Id = nextId++,
+                  RoleId = role.Id,
+                  ClaimType = "permissions", // This matches what we did in Startup.cs
+                  ClaimValue = permission
+              }).ToArray();
+
+            modelBuilder.Entity<IdentityRoleClaim<string>>().HasData(roleClaims);
         }
 
         public DbSet<WebApplication1.Models.HotelLocation> HotelLocation { get; set; } = default!;
@@ -55,5 +88,7 @@ namespace WebApplication1.Data
         public DbSet<WebApplication1.Models.Amenity> Amenity { get; set; } = default!;
 
         public DbSet<WebApplication1.Models.Room> Room { get; set; } = default!;
+
+        public DbSet<WebApplication1.Models.RoomAmenity> RoomAmenity { get; set; } = default!;
     }
 }
