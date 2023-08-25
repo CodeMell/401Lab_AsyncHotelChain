@@ -7,7 +7,7 @@ namespace WebApplication1.Models
     public class ApplicationUser : IdentityUser
     {
         [Key]
-        public string Id { get; set; }
+        public int Id { get; set; }
         [Required]
         public string UserName { get; set; }
         public string Password { get; set; }

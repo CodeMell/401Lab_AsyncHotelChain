@@ -35,7 +35,7 @@ namespace WebApplication1.Data
             new HotelLocation
             { ID = 2, Name = "Nigth 9", Address = "7891 rode", City = "hightown", State = "TN", PhoneNumber = "666-666-6666" },
             new HotelLocation
-            { ID = 3, Name = "Layback Bay", Address = "1112 rode", City = "lowtown", State = "TN", PhoneNumber = "777-777-7777" });
+            { ID = 3, Name = "Layback Bay", Address = "1112 rode", City = "lowtown", State = "TN", PhoneNumber = "777-777-7777" },);
             
             modelBuilder.Entity<Room>().HasData(new Room 
             { ID = 1, Nickname = "pro", LayoutType = "large", Price = 150.00, PetFriendly = "yes", LocationID = 1},
@@ -51,6 +51,10 @@ namespace WebApplication1.Data
             { ID = 2, AmenityID = 1, RoomID = 1, Description = "cool" },
             new RoomAmenity
             { ID = 3, AmenityID = 1, RoomID = 1, Description = "cool" });
+
+            modelBuilder.Entity<ApplicationUser>().HasData(new ApplicationUser
+            { Id = 1, UserName = "rena", Password = "1q2w3e$R%T", Email = "rena@gmail.com", PhoneNumber = "555-555-5555", Token = "wEgwq3810=1"}
+                );
 
             SeedRole(modelBuilder, "Admin", "create", "update", "delete");
             SeedRole(modelBuilder, "Editor", "create", "update");
