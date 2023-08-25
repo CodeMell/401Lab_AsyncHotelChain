@@ -8,5 +8,10 @@ namespace WebApplication1.Models
         public int ID { get; set; }
         [Required]
         public string Name { get; set; }
+
+        public Amenity(string name)
+        {
+            Name = name;
+        }
     }
 }

@@ -86,16 +86,20 @@ namespace WebApplication1.Contorllers
         // POST: api/HotelLocations
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<HotelLocation>> PostHotelLocation(HotelLocation hotelLocation)
+        public async Task<ActionResult<HotelLocation>> PostHotelLocation(string name, string city, string state, string address, string phoneNumber)
         {
-          if (_context.HotelLocation == null)
+            HotelLocation hotellocation = new HotelLocation(name, city, state, address, phoneNumber);
+            _context.hotelLocations.Add(hotellocation);
+            _context.SaveChanges();
+            return Ok(hotellocation);
+          /*  if (_context.HotelLocation == null)
           {
               return Problem("Entity set 'AsyncInnContext.HotelLocation'  is null.");
           }
             _context.HotelLocation.Add(hotelLocation);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetHotelLocation", new { id = hotelLocation.ID }, hotelLocation);
+            return CreatedAtAction("GetHotelLocation", new { id = hotelLocation.ID }, hotelLocation);*/
         }
 
         // DELETE: api/HotelLocations/5

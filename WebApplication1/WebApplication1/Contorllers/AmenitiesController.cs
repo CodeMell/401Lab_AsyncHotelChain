@@ -85,16 +85,21 @@ namespace WebApplication1.Contorllers
         // POST: api/Amenities
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Amenity>> PostAmenity(Amenity amenity)
+        public async Task<ActionResult<Amenity>> PostAmenity(string name)
         {
-          if (_context.Amenity == null)
+            Amenity amenity = new Amenity(name);
+             _context.Amenities.Add(amenity);
+            _context.SaveChanges();
+            return Ok(amenity);
+
+         /* if (_context.Amenity == null)
           {
               return Problem("Entity set 'AsyncInnContext.Amenity'  is null.");
           }
             _context.Amenity.Add(amenity);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetAmenity", new { id = amenity.ID }, amenity);
+            return CreatedAtAction("GetAmenity", new { id = amenity.ID }, amenity);*/
         }
 
         // DELETE: api/Amenities/5

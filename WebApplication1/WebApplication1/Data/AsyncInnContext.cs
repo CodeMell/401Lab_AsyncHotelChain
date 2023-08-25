@@ -23,19 +23,19 @@ namespace WebApplication1.Data
             // We need Identity to do it's thing ...
             base.OnModelCreating(modelBuilder);
             //information tables
-            modelBuilder.Entity<Amenity>().HasData(new Amenity 
+           /* modelBuilder.Entity<Amenity>().HasData(new Amenity 
             { ID = 1, Name = "A/C" },
             new Amenity
             { ID = 2, Name = "Heater" },
             new Amenity
-            { ID = 3, Name = "Soap" });
+            { ID = 3, Name = "Soap" })*/
 
-            modelBuilder.Entity<HotelLocation>().HasData(new HotelLocation 
+           /* modelBuilder.Entity<HotelLocation>().HasData(new HotelLocation 
             { ID = 1, Name = "laaBy", Address = "1236 rode", City = "midtown", State = "TN", PhoneNumber = "555-555-5555" },
             new HotelLocation
             { ID = 2, Name = "Nigth 9", Address = "7891 rode", City = "hightown", State = "TN", PhoneNumber = "666-666-6666" },
             new HotelLocation
-            { ID = 3, Name = "Layback Bay", Address = "1112 rode", City = "lowtown", State = "TN", PhoneNumber = "777-777-7777" });
+            { ID = 3, Name = "Layback Bay", Address = "1112 rode", City = "lowtown", State = "TN", PhoneNumber = "777-777-7777" });*/
             
             modelBuilder.Entity<Room>().HasData(new Room 
             { ID = 1, Nickname = "pro", LayoutType = "large", Price = 150.00, PetFriendly = "yes", LocationID = 1},
