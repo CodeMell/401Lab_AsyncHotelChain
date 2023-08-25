@@ -31,7 +31,7 @@ namespace WebApplication1.Contorllers
           {
               return NotFound();
           }
-            return await _context.HotelLocation.Where(h => h.City == "midtown").ToListAsync();//ToListAsync();
+            return await _context.HotelLocation.ToListAsync();//ToListAsync();
         }
 
         // GET: api/HotelLocations/5
