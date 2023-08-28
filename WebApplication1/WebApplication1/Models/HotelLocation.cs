@@ -17,7 +17,7 @@ namespace WebApplication1.Models
         [Required]
         public string PhoneNumber { get; set; }
 
-        public List<Room> Rooms { get; set; }
+        public List<Room>? Rooms { get; set; }
 
         public HotelLocation(string name, string city, string state, string address, string phoneNumber)
         {
